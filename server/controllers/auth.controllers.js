@@ -1,5 +1,6 @@
 const userModel = require("../model/user.model");
 const emailValidator=require('email-validator')
+const bcrypt=require('bcrypt')
 
 
 const signup=async (req,res)=>{
@@ -64,7 +65,7 @@ const signin=async (req,res)=>{
                 .findOne({email})
                 .select("+password")
 
-     if(!user || password !==user.password){
+     if(!user || !await bcrypt.compare(password,user.password)){
        return res.status(400).json({
         success:false,
         message:"Invalid credentials"
@@ -114,10 +115,31 @@ const getUser=async (req,res)=>{
     }
 }
 
+const logout=(req,res)=>{
+   try {
+       const cookieOptions={
+          expires:new Date(),
+          httpOnly:true
+       }
+
+       res.cookie("token",null,cookieOptions)
+       return res.status(200).json({
+        success:true,
+        message:"Logged out!"
+      })
+   } catch (error) {
+    return res.status(400).json({
+      success:false,
+      message:error.message
+    })
+   }
+}
+
 
 
 module.exports={
     signup,
     signin,
-    getUser
+    getUser,
+    logout
 }
