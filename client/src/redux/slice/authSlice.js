@@ -24,3 +24,5 @@ const authSlice=createSlice({
     initialState,
     reducers:{}
 })
+
+export default authSlice.reducer
