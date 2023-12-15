@@ -1,9 +1,15 @@
 import axios from 'axios'
 
-BASE_URL="https://localhost:5000/api/auth"
-const axiosInstance=axios.create()
+const BASE_URL = "http://localhost:5600/api/auth"
+const axiosInstance = axios.create({
+    withCredentials: true,
+}
 
-axiomInstance.defaults.baseURL=BASE_URL
-axiomInstance.defaults.timeout=2500
+)
+
+axiosInstance.defaults.baseURL = BASE_URL;
+axiosInstance.defaults.timeout = 2500;
 
 export default axiosInstance;
+
+

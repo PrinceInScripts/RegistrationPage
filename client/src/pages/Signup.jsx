@@ -1,9 +1,15 @@
-import { func } from 'prop-types';
 import { useState } from 'react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {toast} from 'react-hot-toast'
+import { Link, useNavigate } from 'react-router-dom';
+import { isEmail, isValidPassword } from '../helper/regexMatcher';
+import { useDispatch } from 'react-redux';
+import { createAccount } from '../redux/slice/authSlice';
 
 function Signup() {
+
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
 
     const [signupDetails,setSignupDetails]=useState({
         name:"",
@@ -20,13 +26,45 @@ function Signup() {
             })
     }
 
-    function onhandleSubmit(e){
+   async function onhandleSubmit(e){
         e.preventDefault()
-        console.log(signupDetails);
+        
+        if(!signupDetails.name || !signupDetails.email || !signupDetails.password || !signupDetails.confirmPassword)
+        {
+            toast.error("All filed are required")
+            return;
+        }
 
+        if(signupDetails.name.length<5){
+            toast.error("Name Length must be 5 charcter")
+            return;
+        }
+
+        if(!isEmail(signupDetails.email)){
+            toast.error("Invalid email provider")
+            return;
+        }
+        if(!isValidPassword(signupDetails.password)){
+            toast.error("Invalid password provided, password should 6-16 character long with atleast a number and a special character")
+            return;
+        }
+
+        const response=await dispatch(createAccount(signupDetails))
+
+        if(response?.payload?.data){
+            navigate('/signin')
+        }
+
+        setSignupDetails({
+            name:"",
+            email:"",
+            password:"",
+            confirmPassword:""
+        })
         
     }
     return (
+        
        
             <div className='flex overflow-x-auto justify-center items-center h-[100vh]'>
                 <div className=' px-4 py-8 shadow-2xl rounded-2xl'>
@@ -89,6 +127,7 @@ function Signup() {
                 </div>
 
             </div>
+          
     );
 }
 
