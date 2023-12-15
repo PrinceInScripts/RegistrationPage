@@ -78,10 +78,13 @@ const signin=async (req,res)=>{
 
      const cookieOptions={
       maxAge:24*60*60*100,
-      httpOnly:true
+      httpOnly:true,
+      secure: true, 
+      sameSite: 'None'
      }
 
-    res.cookie("token",token,cookieOptions)
+  
+    res.cookie("token",token,cookieOptions);
 
      res.status(200).json({
       success:true,
