@@ -35,6 +35,9 @@ const signup=async (req,res)=>{
 
        const userInfo=userModel(req.body)
        const result= await userInfo.save()
+
+    
+
        return res.status(200).json({
         success:true,
         data:result
