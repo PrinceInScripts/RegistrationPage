@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = "https://registration-page-backend.vercel.app/api/auth"
+const BASE_URL = "http://localhost:5600/api/auth"
 const axiosInstance = axios.create({
     withCredentials: true,
 }
