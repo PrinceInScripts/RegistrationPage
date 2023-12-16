@@ -22,8 +22,6 @@ const getUserDetailsAPI = async () => {
 export const createAccount=createAsyncThunk('auth/signup',async (data,{rejectWithValue})=>{
   try {
     const response= axiosInstance.post('/signup',data)
-    console.log(response);
-
     toast.promise(response,{
       loading:"Wait ! creating your account",
       success:(data)=>{
@@ -41,7 +39,6 @@ export const createAccount=createAsyncThunk('auth/signup',async (data,{rejectWit
 export const login=createAsyncThunk('auth/signin',async (data,{rejectWithValue})=>{
      try {
         const response= axiosInstance.post('/signin',data)
-       
         toast.promise(response,{
           loading:"Wait ! authenticate your account",
           success:(data)=>{

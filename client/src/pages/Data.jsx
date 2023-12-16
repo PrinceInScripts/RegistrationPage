@@ -11,6 +11,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(getUser());
+    console.log(user);
   }, [dispatch]);
 
   return (
