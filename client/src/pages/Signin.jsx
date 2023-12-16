@@ -80,15 +80,6 @@ function Signin() {
                     />
                  </div>
 
-                 <div className="flex items-start">
-                    <Link
-                      to="/forgot-password"
-                     className="ml-auto text-sm text-cyan-700 font-bold hover:underline dark:text-cyan-500"
-                        >
-                      Forgot Password?
-                    </Link>
-        </div>
-
                  <button type='submit' className="mt-2 w-[50%] bg-yellow-800 hover:bg-yellow-500 transition-all ease-in-out duration-300 cursor-pointer py-2 font-semibold text-lg rounded-md">
                  Signin
                  </button>
