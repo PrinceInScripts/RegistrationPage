@@ -1,4 +1,4 @@
-# Registration Page Frontend
+# Registration Page Backend
 
 ### Setup Instruction
 
