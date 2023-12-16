@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: "http://localhost:5174",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
